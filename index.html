@@ -132,7 +132,8 @@ label.shake {
 <canvas id="confetti-canvas"></canvas>
 
 <!-- Page 1 -->
-<div class="page1-text">
+<div class="page active" id="page1">
+
   <h1 class="main-title">Hello! Welcome back to the Quiz Page!</h1>
 
   <p class="subtitle">
@@ -141,7 +142,19 @@ label.shake {
     Aku tau kamu akan ngomong "loh emang kita jadian? kamu aja waktu itu nggak jawab" 
     but anyway.. Isi aja tanggalnya to get to the next quiz HEHE
   </p>
+
+  <input 
+    type="password" 
+    id="passwordInput"
+    placeholder="ddmmyy"
+  >
+
+  <br>
+
+  <button class="submit-btn" onclick="checkPassword()">Submit 💌</button>
+
 </div>
+
 
 <!-- Page 2 -->
 <div class="page" id="page2">
