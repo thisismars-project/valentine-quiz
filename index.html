@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Quiz - Heboh 💖</title>
+<title>Valentine Quiz 💖</title>
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -129,33 +129,33 @@
     <!-- Question 1 -->
     <div class="quiz-question" data-answer="b">
         <p>Which one of your favorite food yang juga makanan kesukaan Intan? 🍴</p>
-        <label><input type="radio" name="q1" value="a"> Nasi padang pake kikil <span class="indicator">(I thought you know me damn well?!)</span></label>
-        <label><input type="radio" name="q1" value="b"> Nasi goreng <span class="indicator">(betuuul, sayang!)</span></label>
-        <label><input type="radio" name="q1" value="c"> KFC <span class="indicator">(tetottt, salah!)</span></label>
+        <label><input type="radio" name="q1" value="a"> Nasi padang pake kikil<span class="indicator">I thought you know me damn well?!</span></label>
+        <label><input type="radio" name="q1" value="b"> Nasi goreng<span class="indicator">betuuul, sayang!</span></label>
+        <label><input type="radio" name="q1" value="c"> KFC<span class="indicator">tetottt, salah!</span></label>
     </div>
 
     <!-- Question 2 -->
     <div class="quiz-question" data-answer="c">
         <p>Which one of your favorite color yang juga favorite colornya Intan? 🎨</p>
-        <label><input type="radio" name="q2" value="a"> Pink <span class="indicator">(kan kamu ga suka pink?! haha)</span></label>
-        <label><input type="radio" name="q2" value="b"> White <span class="indicator">(well, you like it sih tapi Intan tidak)</span></label>
-        <label><input type="radio" name="q2" value="c"> Black <span class="indicator">(pintarnya pacarku!)</span></label>
+        <label><input type="radio" name="q2" value="a"> Pink<span class="indicator">kan kamu ga suka pink?! haha</span></label>
+        <label><input type="radio" name="q2" value="b"> White<span class="indicator">well, you like it sih tapi Intan tidak</span></label>
+        <label><input type="radio" name="q2" value="c"> Black<span class="indicator">pintarnya pacarku!</span></label>
     </div>
 
     <!-- Question 3 -->
     <div class="quiz-question" data-answer="a">
         <p>Which one of this habit is Intan’s? 😆</p>
-        <label><input type="radio" name="q3" value="a"> Ketawa dulu padahal belum cerita <span class="indicator">(betooool! ketawa tanpa alasan adalah keahlianku)</span></label>
-        <label><input type="radio" name="q3" value="b"> Kalo makan dikit banget :) <span class="indicator">(kamu mengejek aku!)</span></label>
-        <label><input type="radio" name="q3" value="c"> Sangat rajin mandi <span class="indicator">(sekarang agak rajin kan tapi?!)</span></label>
+        <label><input type="radio" name="q3" value="a"> Ketawa dulu padahal belum cerita<span class="indicator">betooool! ketawa tanpa alasan adalah keahlianku</span></label>
+        <label><input type="radio" name="q3" value="b"> Kalo makan dikit banget :)<span class="indicator">kamu mengejek aku!</span></label>
+        <label><input type="radio" name="q3" value="c"> Sangat rajin mandi<span class="indicator">sekarang agak rajin kan tapi?!</span></label>
     </div>
 
     <!-- Question 4 -->
     <div class="quiz-question" data-answer="c">
         <p>Which one of this habit is Adri's? ❤️</p>
-        <label><input type="radio" name="q4" value="a"> Jarang mandi <span class="indicator">(salah! kamu sangat rajin)</span></label>
-        <label><input type="radio" name="q4" value="b"> Bahagia ketika macet :( <span class="indicator">(sumpah aku takut!)</span></label>
-        <label><input type="radio" name="q4" value="c"> Sayang sama Intan setiap detik <span class="indicator">(WKWKW masa sihhh?)</span></label>
+        <label><input type="radio" name="q4" value="a"> Jarang mandi<span class="indicator">salah! kamu sangat rajin</span></label>
+        <label><input type="radio" name="q4" value="b"> Bahagia ketika macet :(<span class="indicator">sumpah aku takut!</span></label>
+        <label><input type="radio" name="q4" value="c"> Sayang sama Intan setiap detik<span class="indicator">WKWKW masa sihhh?</span></label>
     </div>
 
     <button class="submit-btn" onclick="checkAllCorrect()">Next Page ➡️</button>
@@ -236,7 +236,7 @@
             b.classList.add('balloon');
             b.style.left = Math.random()*90 + 'vw';
             b.style.animationDuration = (5+Math.random()*5)+'s';
-            const emojis = ['🎈','💖','🌹','💌','✨'];
+            const emojis = ['🎈','💖','🌹','✨'];
             b.textContent = emojis[Math.floor(Math.random()*emojis.length)];
             page3.appendChild(b);
             setTimeout(()=>{ b.remove(); }, 10000);
