@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Quiz - Super Heboh 💖</title>
+<title>Valentine Quiz - Heboh 💖</title>
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -172,7 +172,7 @@
     // Password
     function checkPassword() {
         const password = document.getElementById('passwordInput').value;
-        if(password === '301125'){ // ganti sesuai tanggal jadian
+        if(password === '301125'){ 
             document.getElementById('page1').classList.remove('active');
             document.getElementById('page2').classList.add('active');
         } else { alert("masa kamu lupa? :("); }
@@ -188,9 +188,13 @@
                 q.querySelectorAll('.indicator').forEach(ind => ind.style.display = 'none');
                 radio.nextElementSibling.style.display = 'inline';
                 radio.nextElementSibling.classList.remove('correct','wrong');
+
                 if(radio.value === q.dataset.answer){
                     radio.nextElementSibling.classList.add('correct');
-                } else { radio.nextElementSibling.classList.add('wrong'); }
+                } else { 
+                    radio.nextElementSibling.classList.add('wrong'); 
+                }
+
                 // update score
                 let correctCount = 0;
                 questions.forEach(qq => {
@@ -211,6 +215,7 @@
         if(allCorrect){
             document.getElementById('page2').classList.remove('active');
             document.getElementById('page3').classList.add('active');
+            launchConfetti();
             launchBalloons();
         } else { alert("Masih ada jawaban yang salah 😅"); }
     }
@@ -238,7 +243,7 @@
         }
     }
 
-    // 🎉 Confetti
+    // 🎉 Confetti Page 3 only
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -248,7 +253,7 @@
     for(let i=0;i<150;i++){
         confetti.push({
             x: Math.random()*canvas.width,
-            y: Math.random()*canvas.height,
+            y: canvas.height + Math.random()*canvas.height,
             r: Math.random()*6+4,
             d: Math.random()*canvas.height,
             color: ['#ff1493','#ff69b4','#ffc0cb','#fff0f5','#ffb6c1'][Math.floor(Math.random()*5)],
@@ -271,14 +276,16 @@
 
     function updateConfetti(){
         confetti.forEach(c=>{
-            c.y += 1;
-            c.tilt += 0.1;
-            if(c.y>canvas.height){ c.y = -10; c.x = Math.random()*canvas.width; c.tilt = Math.random()*10-10; }
+            if(document.getElementById('page3').classList.contains('active')){
+                c.y -= 1.5;
+                c.tilt += 0.1;
+                if(c.y<0){ c.y = canvas.height+10; c.x = Math.random()*canvas.width; c.tilt = Math.random()*10-10; }
+            }
         });
         requestAnimationFrame(drawConfetti);
     }
     drawConfetti();
-
 </script>
+
 </body>
 </html>
