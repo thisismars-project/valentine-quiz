@@ -71,14 +71,17 @@
     .indicator { margin-left: 8px; font-weight: bold; display: none; }
 
     .correct { color: green; }
-    .wrong { color: red; animation: shake 0.3s; display: inline-block; }
+    .wrong { color: red; animation: shake 0.5s; display: inline-block; }
+label.shake {
+    animation: shake 0.3s;
+}
 
-    @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
     }
 
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
@@ -182,29 +185,34 @@
     const questions = document.querySelectorAll('.quiz-question');
     const scoreFill = document.getElementById('scoreFill');
 
-    questions.forEach(q => {
-        q.querySelectorAll('input[type="radio"]').forEach(radio => {
-            radio.addEventListener('click', () => {
-                q.querySelectorAll('.indicator').forEach(ind => ind.style.display = 'none');
-                radio.nextElementSibling.style.display = 'inline';
-                radio.nextElementSibling.classList.remove('correct','wrong');
+   questions.forEach(q => {
+    q.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('click', () => {
+            // reset indikator & shake sebelumnya
+            q.querySelectorAll('.indicator').forEach(ind => ind.style.display='none');
+            q.querySelectorAll('label').forEach(l => l.classList.remove('shake'));
 
-                if(radio.value === q.dataset.answer){
-                    radio.nextElementSibling.classList.add('correct');
-                } else { 
-                    radio.nextElementSibling.classList.add('wrong'); 
-                }
+            const label = radio.parentElement; // label jawaban yang diklik
+            const indicator = label.querySelector('.indicator');
+            indicator.style.display = 'inline';
 
-                // update score
-                let correctCount = 0;
-                questions.forEach(qq => {
-                    const sel = qq.querySelector('input[type="radio"]:checked');
-                    if(sel && sel.value === qq.dataset.answer) correctCount++;
-                });
-                scoreFill.style.width = (correctCount / questions.length) * 100 + '%';
+            if(radio.value === q.dataset.answer){
+                indicator.classList.add('correct');
+            } else {
+                indicator.classList.add('wrong');
+                label.classList.add('shake'); // shake label jawaban salah
+            }
+
+            // update score bar
+            let correctCount = 0;
+            questions.forEach(qq => {
+                const sel = qq.querySelector('input[type="radio"]:checked');
+                if(sel && sel.value === qq.dataset.answer) correctCount++;
             });
+            scoreFill.style.width = (correctCount / questions.length)*100 + '%';
         });
     });
+});
 
     function checkAllCorrect() {
         let allCorrect = true;
