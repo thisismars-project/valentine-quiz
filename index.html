@@ -110,6 +110,21 @@ label.shake {
         0% { transform: translateY(0) rotate(0deg);}
         100% { transform: translateY(-110vh) rotate(360deg);}
     }
+    .main-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #ff4f81;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+}
+
 </style>
 </head>
 <body>
@@ -117,11 +132,15 @@ label.shake {
 <canvas id="confetti-canvas"></canvas>
 
 <!-- Page 1 -->
-<div class="page active" id="page1">
-    <h1>Masukin tanggal jadian yaa! 💖🌹</h1>
-    <input type="text" id="passwordInput" placeholder="ddmmyy" maxlength="6">
-    <br>
-    <button class="submit-btn" onclick="checkPassword()">Submit 🎉</button>
+<div class="page1-text">
+  <h1 class="main-title">Hello! Welcome back to the Quiz Page!</h1>
+
+  <p class="subtitle">
+    Ini test yang pertama..<br><br>
+    Coba, kamu isi di kotak bawah, tanggal berapa kita jadian?<br><br>
+    Aku tau kamu akan ngomong "loh emang kita jadian? kamu aja waktu itu nggak jawab" 
+    but anyway.. Isi aja tanggalnya to get to the next quiz HEHE
+  </p>
 </div>
 
 <!-- Page 2 -->
