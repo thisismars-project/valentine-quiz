@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Quiz</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffd1dc; /* pastel pink */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        color: #333;
+    }
+
+    .page {
+        display: none;
+        width: 90%;
+        max-width: 500px;
+        background: #fff0f5;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        text-align: center;
+        animation: fadeIn 0.5s;
+    }
+
+    .active { display: block; }
+
+    h1, h2 { margin-bottom: 20px; }
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    button:hover { opacity: 0.9; }
+
+    .quiz-question { text-align: left; margin-bottom: 20px; }
+    .quiz-question label { display: block; margin: 5px 0; cursor: pointer; }
+
+    .indicator {
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .correct { color: green; }
+    .wrong { color: red; animation: shake 0.3s; display: inline-block; }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    .score-bar {
+        height: 10px;
+        background: #eee;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .score-fill {
+        height: 100%;
+        width: 0%;
+        background: #ff69b4;
+        transition: width 0.3s;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page active" id="page1">
+    <h1>Masukin tanggal jadian yaa! ??</h1>
+    <input type="text" id="passwordInput" placeholder="Ex: 301125" maxlength="6">
+    <br>
+    <button onclick="checkPassword()">Submit</button>
+</div>
+
+<!-- Page 2 -->
+<div class="page" id="page2">
+    <h1>Valentine's Day Quiz ??</h1>
+    <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+
+    <div class="quiz-question" data-answer="a">
+        <p>Which one of your favorite food yang juga makanan kesukaan Intan?</p>
+        <label><input type="radio" name="q1" value="a"> Nasi padang pake kikil <span class="indicator">(I thought you know me damn well?!)</span></label>
+        <label><input type="radio" name="q1" value="b"> Nasi goreng <span class="indicator">(betuuul, sayang!)</span></label>
+        <label><input type="radio" name="q1" value="c"> KFC <span class="indicator">(tetottt, salah!)</span></label>
+    </div>
+
+    <div class="quiz-question" data-answer="c">
+        <p>Which one of your favorite color yang juga favorite colornya Intan?</p>
+        <label><input type="radio" name="q2" value="a"> Pink <span class="indicator">(kan kamu ga suka pink?! haha)</span></label>
+        <label><input type="radio" name="q2" value="b"> White <span class="indicator">(well, you like it sih tapi Intan tidak)</span></label>
+        <label><input type="radio" name="q2" value="c"> Black <span class="indicator">(pintarnya pacarku!)</span></label>
+    </div>
+
+    <div class="quiz-question" data-answer="a">
+        <p>Which one of this habit is Intan’s?</p>
+        <label><input type="radio" name="q3" value="a"> Ketawa dulu padahal belum cerita <span class="indicator">(betooool! ketawa tanpa alasan adalah keahlianku)</span></label>
+        <label><input type="radio" name="q3" value="b"> Kalo makan dikit banget :) <span class="indicator">(kamu mengejek aku!)</span></label>
+        <label><input type="radio" name="q3" value="c"> Sangat rajin mandi <span class="indicator">(sekarang agak rajin kan tapi?!)</span></label>
+    </div>
+
+    <div class="quiz-question" data-answer="c">
+        <p>Which one of this habit is Adri's?</p>
+        <label><input type="radio" name="q4" value="a"> Jarang mandi <span class="indicator">(salah! kamu sangat rajin)</span></label>
+        <label><input type="radio" name="q4" value="b"> Bahagia ketika macet :( <span class="indicator">(sumpah aku takut!)</span></label>
+        <label><input type="radio" name="q4" value="c"> Sayang sama Intan setiap detik <span class="indicator">(WKWKW masa sihhh?)</span></label>
+    </div>
+
+    <button onclick="submitQuiz()">Submit ?</button>
+    <button onclick="resetQuiz()">Reset ??</button>
+</div>
+
+<!-- Page 3 -->
+<div class="page" id="page3">
+    <h1>Happy first Valentine's Day dear Adri! ??</h1>
+    <p>I really appreciate your effort and the time you spare to come here. Thank you ??</p>
+</div>
+
+<script>
+    // Page 1
+    function checkPassword() {
+        const password = document.getElementById('passwordInput').value;
+        if(password === '301125'){
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
+        } else {
+            alert("masa kamu lupa? :(");
+        }
+    }
+
+    // Quiz logic
+    const questions = document.querySelectorAll('.quiz-question');
+    const scoreFill = document.getElementById('scoreFill');
+
+    function submitQuiz() {
+        let correctCount = 0;
+        questions.forEach(q => {
+            const correct = q.dataset.answer;
+            const selected = q.querySelector('input[type="radio"]:checked');
+            const indicators = q.querySelectorAll('.indicator');
+
+            indicators.forEach(ind => ind.classList.remove('correct', 'wrong'));
+
+            if(selected){
+                if(selected.value === correct){
+                    correctCount++;
+                    selected.nextElementSibling.classList.add('correct');
+                } else {
+                    selected.nextElementSibling.classList.add('wrong');
+                }
+            }
+        });
+
+        // Update score bar
+        const scorePercent = (correctCount / questions.length) * 100;
+        scoreFill.style.width = scorePercent + '%';
+
+        // Check if all correct
+        if(correctCount === questions.length){
+            setTimeout(() => {
+                document.getElementById('page2').classList.remove('active');
+                document.getElementById('page3').classList.add('active');
+            }, 500);
+        }
+    }
+
+    function resetQuiz() {
+        questions.forEach(q => {
+            q.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            q.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('correct', 'wrong'));
+        });
+        scoreFill.style.width = '0%';
+    }
+</script>
+
+</body>
+</html>
