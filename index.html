@@ -17,6 +17,17 @@
         background: linear-gradient(135deg, #ffd1dc, #ffe4ec);
         overflow-x: hidden;
     }
+    .date-input {
+    width: 95%;
+    padding: 20px;
+    font-size: 26px;
+    border-radius: 16px;
+    border: 2px solid #ff99b6;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 
     .page {
         display: none;
@@ -136,32 +147,23 @@ label.shake {
 <!-- Page 1 -->
 <div class="page active" id="page1">
 
-  <h1 class="main-title">Haaai, Adri! Welcome back to the Quiz Page!</h1>
+  <h1 class="main-title">Haaai, Adri! <br>Welcome back to the Quiz Page!</h1>
 
   <p class="subtitle">
-    Ini test yang pertama..<br><br>
-    Coba, kamu isi di kotak bawah, tanggal berapa kita jadian?<br><br>
-    Aku tau kamu akan ngomong "loh emang kita jadian? kamu aja waktu itu nggak jawab" 
-    but anyway.. Isi aja tanggalnya to get to the next quiz HEHE
+    Coba, kamu isi di kotak bawah, tanggal berapa kita jadian?
   </p>
 
   <input 
     type="password" 
     id="passwordInput"
     placeholder="ddmmyy"
-    padding: 16px;
-    font-size: 22px;
-    border-radius: 14px;
-    border: 2px solid #ff99b6;
-    width: 85%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
+    class="date-input"
   >
 
-  <br>
+  <p class="subtitle">
+    Aku tau kamu akan ngomong "loh emang kita jadian? kamu aja waktu itu nggak jawab"  
+    but anyway.. Isi aja tanggalnya to get to the next quiz HEHE
+  </p>
 
   <button class="submit-btn" onclick="checkPassword()">Submit 💌</button>
 
