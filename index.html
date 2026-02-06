@@ -238,7 +238,145 @@ I love you big time 🫶🏻
 
 <script>
 
-/* JS SAMA PERSIS PUNYA KAMU — TIDAK DIUBAH */
+<script>
+
+// PASSWORD PAGE 1
+function checkPassword() {
+    const password = document.getElementById('passwordInput').value;
+    if(password === '301125'){ 
+        document.getElementById('page1').classList.remove('active');
+        document.getElementById('page2').classList.add('active');
+    } else { 
+        alert("masa kamu lupa? :("); 
+    }
+}
+
+// QUIZ LOGIC
+const questions = document.querySelectorAll('.quiz-question');
+const scoreFill = document.getElementById('scoreFill');
+
+questions.forEach(q => {
+    q.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('click', () => {
+
+            // reset indikator & shake sebelumnya
+            q.querySelectorAll('.indicator').forEach(ind => ind.style.display='none');
+            q.querySelectorAll('label').forEach(l => l.classList.remove('shake'));
+
+            const label = radio.parentElement;
+            const indicator = label.querySelector('.indicator');
+            indicator.style.display = 'inline';
+
+            if(radio.value === q.dataset.answer){
+                indicator.classList.add('correct');
+            } else {
+                indicator.classList.add('wrong');
+                label.classList.add('shake');
+            }
+
+            // update score bar
+            let correctCount = 0;
+            questions.forEach(qq => {
+                const sel = qq.querySelector('input[type="radio"]:checked');
+                if(sel && sel.value === qq.dataset.answer) correctCount++;
+            });
+            scoreFill.style.width = (correctCount / questions.length)*100 + '%';
+        });
+    });
+});
+
+function checkAllCorrect() {
+    let allCorrect = true;
+    questions.forEach(q => {
+        const sel = q.querySelector('input[type="radio"]:checked');
+        if(!sel || sel.value !== q.dataset.answer) allCorrect = false;
+    });
+
+    if(allCorrect){
+        document.getElementById('page2').classList.remove('active');
+        document.getElementById('page3').classList.add('active');
+        launchConfetti();
+        launchBalloons();
+    } else { 
+        alert("Masih ada jawaban yang salah 😅"); 
+    }
+}
+
+function resetQuiz() {
+    questions.forEach(q => {
+        q.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        q.querySelectorAll('.indicator').forEach(ind => { 
+            ind.style.display='none'; 
+            ind.classList.remove('correct','wrong'); 
+        });
+    });
+    scoreFill.style.width = '0%';
+}
+
+// BALLOONS
+function launchBalloons() {
+    const page3 = document.getElementById('page3');
+    for(let i=0;i<15;i++){
+        const b = document.createElement('div');
+        b.classList.add('balloon');
+        b.style.left = Math.random()*90 + 'vw';
+        b.style.animationDuration = (5+Math.random()*5)+'s';
+        const emojis = ['🎈','💖','🌹','✨'];
+        b.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        page3.appendChild(b);
+        setTimeout(()=>{ b.remove(); }, 10000);
+    }
+}
+
+// CONFETTI
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confetti = [];
+for(let i=0;i<150;i++){
+    confetti.push({
+        x: Math.random()*canvas.width,
+        y: canvas.height + Math.random()*canvas.height,
+        r: Math.random()*6+4,
+        d: Math.random()*canvas.height,
+        color: ['#ff1493','#ff69b4','#ffc0cb','#fff0f5','#ffb6c1'][Math.floor(Math.random()*5)],
+        tilt: Math.random()*10-10
+    });
+}
+
+function drawConfetti(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    confetti.forEach(c=>{
+        ctx.beginPath();
+        ctx.lineWidth = c.r/2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x+c.tilt+ c.r/4, c.y);
+        ctx.lineTo(c.x+c.tilt, c.y+c.r);
+        ctx.stroke();
+    });
+    updateConfetti();
+}
+
+function updateConfetti(){
+    confetti.forEach(c=>{
+        if(document.getElementById('page3').classList.contains('active')){
+            c.y -= 1.5;
+            c.tilt += 0.1;
+            if(c.y<0){ 
+                c.y = canvas.height+10; 
+                c.x = Math.random()*canvas.width; 
+                c.tilt = Math.random()*10-10; 
+            }
+        }
+    });
+    requestAnimationFrame(drawConfetti);
+}
+
+drawConfetti();
+
+</script>
 
 </script>
 
