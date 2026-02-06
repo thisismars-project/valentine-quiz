@@ -187,7 +187,6 @@ label.shake { animation: shake .3s; }
     <h1>Valentine's Day Quiz 🌸💌</h1>
     <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
 
-    <!-- Question 1 -->
     <div class="quiz-question" data-answer="b">
         <p>Which one of your favorite food yang juga makanan kesukaan Intan? 🍴</p>
         <label><input type="radio" name="q1" value="a"> Nasi padang pake kikil<span class="indicator">I thought you know me damn well?!</span></label>
@@ -195,7 +194,6 @@ label.shake { animation: shake .3s; }
         <label><input type="radio" name="q1" value="c"> KFC<span class="indicator">tetottt, salah!</span></label>
     </div>
 
-    <!-- Question 2 -->
     <div class="quiz-question" data-answer="c">
         <p>Which one of your favorite color yang juga favorite colornya Intan? 🎨</p>
         <label><input type="radio" name="q2" value="a"> Pink<span class="indicator">kan kamu ga suka pink?! haha</span></label>
@@ -203,7 +201,6 @@ label.shake { animation: shake .3s; }
         <label><input type="radio" name="q2" value="c"> Black<span class="indicator">pintarnya pacarku!</span></label>
     </div>
 
-    <!-- Question 3 -->
     <div class="quiz-question" data-answer="a">
         <p>Which one of this habit is Intan’s? 😆</p>
         <label><input type="radio" name="q3" value="a"> Ketawa dulu padahal belum cerita<span class="indicator">betooool! ketawa tanpa alasan adalah keahlianku</span></label>
@@ -211,7 +208,6 @@ label.shake { animation: shake .3s; }
         <label><input type="radio" name="q3" value="c"> Sangat rajin mandi<span class="indicator">sekarang agak rajin kan tapi?!</span></label>
     </div>
 
-    <!-- Question 4 -->
     <div class="quiz-question" data-answer="c">
         <p>Which one of this habit is Adri's? ❤️</p>
         <label><input type="radio" name="q4" value="a"> Jarang mandi<span class="indicator">salah! kamu sangat rajin</span></label>
@@ -238,9 +234,6 @@ I love you big time 🫶🏻
 
 <script>
 
-<script>
-
-// PASSWORD PAGE 1
 function checkPassword() {
     const password = document.getElementById('passwordInput').value;
     if(password === '301125'){ 
@@ -251,7 +244,6 @@ function checkPassword() {
     }
 }
 
-// QUIZ LOGIC
 const questions = document.querySelectorAll('.quiz-question');
 const scoreFill = document.getElementById('scoreFill');
 
@@ -259,7 +251,6 @@ questions.forEach(q => {
     q.querySelectorAll('input[type="radio"]').forEach(radio => {
         radio.addEventListener('click', () => {
 
-            // reset indikator & shake sebelumnya
             q.querySelectorAll('.indicator').forEach(ind => ind.style.display='none');
             q.querySelectorAll('label').forEach(l => l.classList.remove('shake'));
 
@@ -274,7 +265,6 @@ questions.forEach(q => {
                 label.classList.add('shake');
             }
 
-            // update score bar
             let correctCount = 0;
             questions.forEach(qq => {
                 const sel = qq.querySelector('input[type="radio"]:checked');
@@ -313,7 +303,6 @@ function resetQuiz() {
     scoreFill.style.width = '0%';
 }
 
-// BALLOONS
 function launchBalloons() {
     const page3 = document.getElementById('page3');
     for(let i=0;i<15;i++){
@@ -328,7 +317,6 @@ function launchBalloons() {
     }
 }
 
-// CONFETTI
 const canvas = document.getElementById('confetti-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -340,7 +328,6 @@ for(let i=0;i<150;i++){
         x: Math.random()*canvas.width,
         y: canvas.height + Math.random()*canvas.height,
         r: Math.random()*6+4,
-        d: Math.random()*canvas.height,
         color: ['#ff1493','#ff69b4','#ffc0cb','#fff0f5','#ffb6c1'][Math.floor(Math.random()*5)],
         tilt: Math.random()*10-10
     });
@@ -375,8 +362,6 @@ function updateConfetti(){
 }
 
 drawConfetti();
-
-</script>
 
 </script>
 
